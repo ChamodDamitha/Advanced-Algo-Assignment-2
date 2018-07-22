@@ -3,31 +3,31 @@ import time
 
 
 def binary_search(ele, arr, i, j):
-    if i == j:
-        return -1
-    else:
+    if i <= j:
         m = (i + j) / 2
         if arr[m] == ele:
             return m
         else:
             if ele < arr[m]:
-                return binary_search(ele, arr, i, m)
+                return binary_search(ele, arr, i, m - 1)
             else:
                 return binary_search(ele, arr, m + 1, j)
+    else:
+        return -1
 
 
 def randomized_binary_search(ele, arr, i, j):
-    if i == j:
-        return -1
-    else:
-        m = randint(i, j - 1)
+    if i <= j:
+        m = randint(i, j)
         if arr[m] == ele:
             return m
         else:
             if ele < arr[m]:
-                return binary_search(ele, arr, i, m)
+                return randomized_binary_search(ele, arr, i, m - 1)
             else:
-                return binary_search(ele, arr, m + 1, j)
+                return randomized_binary_search(ele, arr, m + 1, j)
+    else:
+        return -1
 
 
 def create_arrays(size):
@@ -81,10 +81,10 @@ for k in range(5, 8):
     # ..................Binary Search.................................
     start_time = time.time()
     for m in members:
-        binary_search(m, arr, 0, arr_size)
+        binary_search(m, arr, 0, arr_size - 1)
 
     for nm in non_members:
-        binary_search(nm, arr, 0, arr_size)
+        binary_search(nm, arr, 0, arr_size - 1)
     end_time = time.time()
 
     print("Binary Search(N = " + str(arr_size) + ") - Time(microseconds) : " + str(
@@ -94,10 +94,10 @@ for k in range(5, 8):
     # ..................Randomized Binary Search.................................
     start_time = time.time()
     for m in members:
-        randomized_binary_search(m, arr, 0, arr_size)
+        randomized_binary_search(m, arr, 0, arr_size - 1)
 
     for nm in non_members:
-        randomized_binary_search(nm, arr, 0, arr_size)
+        randomized_binary_search(nm, arr, 0, arr_size - 1)
     end_time = time.time()
 
     print("Randomized Binary Search(N = " + str(arr_size) + ") - Time(microseconds) : " + str(
