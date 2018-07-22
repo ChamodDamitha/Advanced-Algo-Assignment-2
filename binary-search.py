@@ -64,34 +64,42 @@ def create_arrays(size):
     return arr, non_members, members
 
 
-arr_size = 10 ** 5
+for k in range(5, 8):
 
-arr, non_members, members = create_arrays(arr_size)
+    arr_size = 10 ** k
 
-print('array_slice : ' + str(arr[:100]))
-print('non_members : ' + str(non_members))
-print('members : ' + str(members))
+    print("Test " + str(k - 4) + "...................")
+    print("")
 
+    arr, non_members, members = create_arrays(arr_size)
 
-# ..................Binary Search.................................
-start_time = time.time()
-for m in members:
-    binary_search(m, arr, 0, arr_size)
+    print('Array[:100] : ' + str(arr[:100]))
+    print('Non Members : ' + str(non_members))
+    print('Members : ' + str(members))
+    print("")
 
-for nm in non_members:
-    binary_search(nm, arr, 0, arr_size)
-end_time = time.time()
+    # ..................Binary Search.................................
+    start_time = time.time()
+    for m in members:
+        binary_search(m, arr, 0, arr_size)
 
-print("Binary Search(N = " + str(arr_size) + ") - Time(micro seconds) : " + str(1000000 * (end_time - start_time) / 1000))
+    for nm in non_members:
+        binary_search(nm, arr, 0, arr_size)
+    end_time = time.time()
 
-# ..................Randomized Binary Search.................................
-start_time = time.time()
-for m in members:
-    randomized_binary_search(m, arr, 0, arr_size)
+    print("Binary Search(N = " + str(arr_size) + ") - Time(microseconds) : " + str(
+        1000000 * (end_time - start_time) / 1000))
+    print("")
 
-for nm in non_members:
-    randomized_binary_search(nm, arr, 0, arr_size)
-end_time = time.time()
+    # ..................Randomized Binary Search.................................
+    start_time = time.time()
+    for m in members:
+        randomized_binary_search(m, arr, 0, arr_size)
 
-print("Randomized Binary Search(N = " + str(arr_size) + ") - Time(micro seconds) : " + str(1000000 * (end_time - start_time)/ 1000))
+    for nm in non_members:
+        randomized_binary_search(nm, arr, 0, arr_size)
+    end_time = time.time()
 
+    print("Randomized Binary Search(N = " + str(arr_size) + ") - Time(microseconds) : " + str(
+        1000000 * (end_time - start_time) / 1000))
+    print("")
